@@ -4,35 +4,51 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.List;
 
-@Document("parking_spots")
-public class ParkingSpot {
+@Document("areas")
+public class Area {
+
     @Id
     private String id;
-    private Integer capacity;
     @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
     private GeoJsonPoint coordinates;
     @Field("created_at")
-    private Date createdAt = new Date();
+    private Date createdAt;
     private String description;
-    private String name;
+    private List<String> hazards;
+
+    @DocumentReference(lookup = "{ '_id' : ?#{#self} }")
+    @Field("parking_id")
+    private ParkingSpot parkingSpot;
+
     @Field("updated_at")
-    private Date updatedAt = new Date();
+    private Date updatedAt;
 
-    public ParkingSpot() {}
+    @Field("best_seasons")
+    private List<String> bestSeasons;
+    private String name;
 
-    public ParkingSpot(String id, Integer capacity, GeoJsonPoint coordinates, Date createdAt, String description, String name, Date updatedAt) {
+    public Area(){
+
+    }
+
+    public Area(String id, GeoJsonPoint coordinates, Date createdAt, String description, List<String> hazards,ParkingSpot parkingSpot, Date updatedAt, List<String> bestSeasons, String name) {
         this.id = id;
-        this.capacity = capacity;
         this.coordinates = coordinates;
-        this.createdAt= createdAt;
+        this.createdAt = createdAt;
         this.description = description;
-        this.name = name;
+        this.hazards = hazards;
+        this.parkingSpot = parkingSpot;
         this.updatedAt = updatedAt;
+        this.bestSeasons = bestSeasons;
+        this.name = name;
     }
 
     public String getId() {
@@ -41,14 +57,6 @@ public class ParkingSpot {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
     }
 
     public GeoJsonPoint getCoordinates() {
@@ -75,12 +83,20 @@ public class ParkingSpot {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public List<String> getHazards() {
+        return hazards;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHazards(List<String> hazards) {
+        this.hazards = hazards;
+    }
+
+    public ParkingSpot getParkingSpot() {
+        return parkingSpot;
+    }
+
+    public void setParkingSpot(ParkingSpot parkingSpot) {
+        this.parkingSpot = parkingSpot;
     }
 
     public Date getUpdatedAt() {
@@ -91,16 +107,34 @@ public class ParkingSpot {
         this.updatedAt = updatedAt;
     }
 
+    public List<String> getBestSeasons() {
+        return bestSeasons;
+    }
+
+    public void setBestSeasons(List<String> bestSeasons) {
+        this.bestSeasons = bestSeasons;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "ParkingSpot{" +
+        return "Area{" +
                 "id='" + id + '\'' +
-                ", capacity=" + capacity +
                 ", coordinates=" + coordinates +
                 ", createdAt=" + createdAt +
                 ", description='" + description + '\'' +
-                ", name='" + name + '\'' +
+                ", hazards=" + hazards +
+                ", parkingSpot=" + parkingSpot +
                 ", updatedAt=" + updatedAt +
+                ", bestSeasons=" + bestSeasons +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
