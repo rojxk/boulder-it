@@ -1,13 +1,7 @@
 package com.boulderit;
 
-import com.boulderit.model.Area;
-import com.boulderit.model.ParkingSpot;
-import com.boulderit.model.Problem;
-import com.boulderit.model.Sector;
-import com.boulderit.repository.AreaRepository;
-import com.boulderit.repository.ParkingSpotRepository;
-import com.boulderit.repository.ProblemRepository;
-import com.boulderit.repository.SectorRepository;
+import com.boulderit.model.*;
+import com.boulderit.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,14 +20,21 @@ public class BoulderitApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(ParkingSpotRepository parkingSpotRepository, AreaRepository areaRepository, SectorRepository sectorRepository, ProblemRepository problemRepository){
+	public CommandLineRunner commandLineRunner(ParkingSpotRepository parkingSpotRepository, AreaRepository areaRepository, SectorRepository sectorRepository, ProblemRepository problemRepository, CommentRepository commentRepository){
 		return runner -> {
 			printParkingSpot(parkingSpotRepository);
 			printArea(areaRepository);
 			printSector(sectorRepository);
 			printProblem(problemRepository);
+			printComment(commentRepository);
 
 		};
+	}
+
+	private void printComment(CommentRepository commentRepository) {
+		System.out.println("Printing comment");
+		List<Comment> comments = commentRepository.findAll();
+		System.out.println(comments);
 	}
 
 	private void printProblem(ProblemRepository problemRepository) {
