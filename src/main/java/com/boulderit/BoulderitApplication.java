@@ -2,8 +2,10 @@ package com.boulderit;
 
 import com.boulderit.model.Area;
 import com.boulderit.model.ParkingSpot;
+import com.boulderit.model.Sector;
 import com.boulderit.repository.AreaRepository;
 import com.boulderit.repository.ParkingSpotRepository;
+import com.boulderit.repository.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,12 +24,19 @@ public class BoulderitApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(ParkingSpotRepository parkingSpotRepository, AreaRepository areaRepository){
+	public CommandLineRunner commandLineRunner(ParkingSpotRepository parkingSpotRepository, AreaRepository areaRepository, SectorRepository sectorRepository){
 		return runner -> {
 			printParkingSpot(parkingSpotRepository);
 			printArea(areaRepository);
+			printSector(sectorRepository);
 
 		};
+	}
+
+	private void printSector(SectorRepository sectorRepository) {
+		System.out.println("Printing sector");
+		List<Sector> sectors = sectorRepository.findAll();
+		System.out.println(sectors);
 	}
 
 	private void printArea(AreaRepository areaRepository) {
