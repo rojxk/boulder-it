@@ -75,45 +75,49 @@ public class Problem {
                     ", consensus=" + consensus +
                     '}';
         }
+
+        public static class Consensus{
+            private Integer harder;
+            private Integer easier;
+
+            public Consensus(){
+
+            }
+
+            public Consensus(Integer harder, Integer easier) {
+                this.harder = harder;
+                this.easier = easier;
+            }
+
+            public Integer getHarder() {
+                return harder;
+            }
+
+            public void setHarder(Integer harder) {
+                this.harder = harder;
+            }
+
+            public Integer getEasier() {
+                return easier;
+            }
+
+            public void setEasier(Integer easier) {
+                this.easier = easier;
+            }
+
+            @Override
+            public String toString() {
+                return "Consensus{" +
+                        "harder=" + harder +
+                        ", easier=" + easier +
+                        '}';
+            }
+        }
+
+
     }
 
-    public static class Consensus{
-        private Integer harder;
-        private Integer easier;
 
-        public Consensus(){
-
-        }
-
-        public Consensus(Integer harder, Integer easier) {
-            this.harder = harder;
-            this.easier = easier;
-        }
-
-        public Integer getHarder() {
-            return harder;
-        }
-
-        public void setHarder(Integer harder) {
-            this.harder = harder;
-        }
-
-        public Integer getEasier() {
-            return easier;
-        }
-
-        public void setEasier(Integer easier) {
-            this.easier = easier;
-        }
-
-        @Override
-        public String toString() {
-            return "Consensus{" +
-                    "harder=" + harder +
-                    ", easier=" + easier +
-                    '}';
-        }
-    }
 
     public static class Statistics {
         @Field("send_count")
