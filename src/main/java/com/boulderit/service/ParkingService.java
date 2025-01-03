@@ -10,4 +10,5 @@ public interface ParkingService {
     ParkingSpot save(ParkingSpot parkingSpot);
     ParkingSpot update(ParkingSpot parkingSpot, String id);
     void delete(String Id);
+    ParkingSpot findByAreaId(String Id);
 }

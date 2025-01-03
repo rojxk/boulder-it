@@ -63,4 +63,13 @@ public class ParkingServiceImpl implements ParkingService{
     public void delete(String Id) {
 
     }
+
+    @Override
+    public ParkingSpot findByAreaId(String Id) {
+        try {
+            return parkingSpotRepository.findByAreaId(Id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
