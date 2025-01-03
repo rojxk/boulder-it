@@ -10,5 +10,13 @@ public interface ProblemService {
     Problem save(Problem problem);
     Problem update(Problem problem);
     void deleteById(String id);
+    List<Problem> findBySectorId(String id);
+    public Problem incrementHarderVote(String id);
+    Problem incrementEasierVote(String id);
 
+    Problem incrementSendVote(String id);
+
+    Problem incrementProjectVote(String id);
+
+    Problem incrementLikeVote(String id);
 }
