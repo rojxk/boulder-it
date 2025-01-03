@@ -4,6 +4,10 @@ import com.boulderit.model.Area;
 import com.boulderit.repository.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 
 import java.util.List;
 
@@ -24,11 +28,21 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     public Area findById(String id) {
-        return null;
+
+        return areaRepository.findById(id).orElseThrow();
+
+    }
+
+    @Transactional
+    @Override
+    public Area save(Area area) {
+        return areaRepository.save(area);
     }
 
     @Override
-    public Area save(Area area) {
-        return null;
+    public List<Area> findNearby(double lat, double lon, double maxDistance) {
+        GeoJsonPoint point = new GeoJsonPoint(lon, lat);
+        Distance distance = new Distance(maxDistance, Metrics.KILOMETERS);
+        return areaRepository.findByCoordinatesNear(point, distance);
     }
 }
