@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class Area {
     private List<String> hazards;
 
     @DocumentReference
-    @Field("parking_id")
-    private ParkingSpot parkingSpot;
+    @Field("parking_spots")
+    private List<ParkingSpot> parkingSpots;
 
     @Field("updated_at")
     private Date updatedAt;
@@ -38,13 +39,13 @@ public class Area {
 
     }
 
-    public Area(String id, GeoJsonPoint coordinates, Date createdAt, String description, List<String> hazards,ParkingSpot parkingSpot, Date updatedAt, List<String> bestSeasons, String name) {
+    public Area(String id, GeoJsonPoint coordinates, Date createdAt, String description, List<String> hazards,List<ParkingSpot> parkingSpots, Date updatedAt, List<String> bestSeasons, String name) {
         this.id = id;
         this.coordinates = coordinates;
         this.createdAt = createdAt;
         this.description = description;
         this.hazards = hazards;
-        this.parkingSpot = parkingSpot;
+        this.parkingSpots = parkingSpots;
         this.updatedAt = updatedAt;
         this.bestSeasons = bestSeasons;
         this.name = name;
@@ -90,12 +91,19 @@ public class Area {
         this.hazards = hazards;
     }
 
-    public ParkingSpot getParkingSpot() {
-        return parkingSpot;
+    public List<ParkingSpot> getParkingSpots() {
+        return parkingSpots != null ? parkingSpots : new ArrayList<>();
     }
 
-    public void setParkingSpot(ParkingSpot parkingSpot) {
-        this.parkingSpot = parkingSpot;
+    public void setParkingSpots(List<ParkingSpot> parkingSpots) {
+        this.parkingSpots = parkingSpots;
+    }
+
+    public void addParkingSpot(ParkingSpot parkingSpot) {
+        if (this.parkingSpots == null) {
+            this.parkingSpots = new ArrayList<>();
+        }
+        this.parkingSpots.add(parkingSpot);
     }
 
     public Date getUpdatedAt() {
@@ -130,7 +138,7 @@ public class Area {
                 ", createdAt=" + createdAt +
                 ", description='" + description + '\'' +
                 ", hazards=" + hazards +
-                ", parkingSpot=" + parkingSpot +
+                ", parkingSpots=" + parkingSpots +
                 ", updatedAt=" + updatedAt +
                 ", bestSeasons=" + bestSeasons +
                 ", name='" + name + '\'' +

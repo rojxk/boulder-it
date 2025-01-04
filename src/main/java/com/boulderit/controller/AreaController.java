@@ -44,12 +44,10 @@ public class AreaController {
     @GetMapping("/{id}/full")
     public ResponseEntity<Map<String, Object>> getFullAreaInfo(@PathVariable String id) {
         Area area = areaService.findById(id);
-        ParkingSpot parkingSpot = parkingService.findByAreaId(id);
         List<Sector> sectors = sectorService.findByAreaId(id);
 
         Map<String, Object> response = new HashMap<>();
         response.put("area", area);
-        response.put("parkingSpot", parkingSpot != null ? parkingSpot : new HashMap<>());
         response.put("sectors", sectors != null ? sectors : Collections.emptyList());
 
         return ResponseEntity.ok(response);

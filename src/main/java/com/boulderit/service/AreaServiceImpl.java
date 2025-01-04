@@ -1,6 +1,7 @@
 package com.boulderit.service;
 
 import com.boulderit.model.Area;
+import com.boulderit.model.ParkingSpot;
 import com.boulderit.repository.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -44,5 +46,12 @@ public class AreaServiceImpl implements AreaService {
         GeoJsonPoint point = new GeoJsonPoint(lon, lat);
         Distance distance = new Distance(maxDistance, Metrics.KILOMETERS);
         return areaRepository.findByCoordinatesNear(point, distance);
+    }
+
+    public Area addParkingSpot(String areaId, ParkingSpot parkingSpot) {
+        Area area = findById(areaId);
+        area.addParkingSpot(parkingSpot);
+        area.setUpdatedAt(new Date());
+        return areaRepository.save(area);
     }
 }
