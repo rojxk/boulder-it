@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @Controller
 @RequestMapping("/api/problems")
 public class ProblemController {
@@ -48,7 +50,12 @@ public class ProblemController {
         return ResponseEntity.ok(problem);
     }
 
-
+    @PostMapping
+    public ResponseEntity<Problem> save(@RequestBody Problem problem){
+        problem.setCreatedAt(new Date());
+        problem.setUpdatedAt(new Date());
+        return ResponseEntity.ok(problemService.save(problem));
+    }
 
 
 }
