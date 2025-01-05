@@ -22,10 +22,11 @@ public class ParkingSpot {
     private String name;
     @Field("updated_at")
     private Date updatedAt = new Date();
+    private String type;
 
     public ParkingSpot() {}
 
-    public ParkingSpot(String id, Integer capacity, GeoJsonPoint coordinates, Date createdAt, String description, String name, Date updatedAt) {
+    public ParkingSpot(String id, Integer capacity, GeoJsonPoint coordinates, Date createdAt, String description, String name, Date updatedAt, String type) {
         this.id = id;
         this.capacity = capacity;
         this.coordinates = coordinates;
@@ -33,6 +34,7 @@ public class ParkingSpot {
         this.description = description;
         this.name = name;
         this.updatedAt = updatedAt;
+        this.type = type;
     }
 
     public String getId() {
@@ -89,6 +91,14 @@ public class ParkingSpot {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
