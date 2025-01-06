@@ -1,6 +1,5 @@
 package com.boulderit.service;
 
-import com.boulderit.exception.ResourceNotFoundException;
 import com.boulderit.model.ParkingSpot;
 import com.boulderit.repository.ParkingSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class ParkingServiceImpl implements ParkingService{
         }
 
         ParkingSpot existingSpot = parkingSpotRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Parking spot not found with id: " + id));
+                .orElseThrow();
 
         if (parkingSpot == null) {
             throw new IllegalArgumentException("Parking spot data cannot be null");
