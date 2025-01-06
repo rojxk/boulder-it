@@ -29,8 +29,9 @@ public class ProblemServiceImpl implements ProblemService{
     }
 
     @Override
+    @Transactional
     public Problem save(Problem problem) {
-        return null;
+        return problemRepository.save(problem);
     }
 
     @Override
