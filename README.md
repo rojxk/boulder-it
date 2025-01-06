@@ -28,3 +28,65 @@ BoulderIt is a comprehensive web application for managing climbing areas, sector
 - Grade consensus system
 - Comment system with moderation features
 
+## 🌐 API Endpoints
+### Areas
+
+- GET /api/areas - List all climbing areas
+- GET /api/areas/{id}/full - Get detailed area information
+- POST /api/areas - Create new area
+
+### Parking
+
+- POST /api/parking - Add new parking spot
+- DELETE /api/parking/{id} - Remove parking spot
+- GET /api/parking/area/{areaId} - Get area parking spots
+
+### Problems
+
+- GET /api/problems - List all problems
+- POST /api/problems - Add new problem
+- POST /api/problems/{id}/vote/{type} - Vote on problem (type: like, project, easier, harder, send)
+
+
+## 📘 Database
+### Collections
+- `areas`: Climbing area information
+- `sectors`: Individual climbing sectors
+- `problems`: Boulder problems and routes
+- `parking_spots`: Parking location data
+- `comments`: User feedback and ratings
+
+## 🚀 Installation
+### Prerequisites
+- Python 3.7+
+- Java JDK 11+
+- MongoDB 4.4+
+- Required Python libraries: streamlit, folium, requests
+
+### Steps for running the app
+1. **Clone repository**
+```
+git clone https://github.com/rojxk/boulder-it
+cd boulderit
+```
+2. **Configure database**
+- Create MongoDB database named `boulderit`
+- Run the script ➡️ [here](https://github.com/rojxk/boulder-it/database/init-db.js) to populate the database.
+- Update connection settings in `appliction.properties` file:
+```
+spring.data.mongodb.uri=mongodb://localhost:27017/boulderit
+```
+3. **Install dependencies**
+```
+pip install -r requirements.txt -f frontend/
+```
+4. **Start the backend server**
+```
+./mvnw spring-boot:run
+```
+5. **Launch the Streamlit frontend**
+```
+streamlit run frontend/app.py
+```
+6. **Access the application**
+- Open web browser and navigate to: http://localhost:8501
