@@ -6,6 +6,7 @@ import com.boulderit.repository.ParkingSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class ParkingServiceImpl implements ParkingService{
 
     @Override
     public ParkingSpot save(ParkingSpot parkingSpot) {
-        return null;
+        return parkingSpotRepository.save(parkingSpot);
     }
 
     @Override
@@ -60,8 +61,9 @@ public class ParkingServiceImpl implements ParkingService{
     }
 
     @Override
+    @Transactional
     public void delete(String Id) {
-
+        parkingSpotRepository.deleteByParkingId(Id);
     }
 
     @Override
