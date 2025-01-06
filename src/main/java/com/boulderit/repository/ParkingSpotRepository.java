@@ -14,4 +14,7 @@ public interface ParkingSpotRepository extends MongoRepository<ParkingSpot, Stri
     @Query("{ '_id': ?0 }")
     ParkingSpot findByAreaId(String areaId);
 
+    @Query(value = "{ '_id': ?0 }", delete = true)
+    void deleteByParkingId(String parkingId);
+
 }
