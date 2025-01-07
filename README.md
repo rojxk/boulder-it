@@ -31,21 +31,33 @@ BoulderIt is a comprehensive web application for managing climbing areas, sector
 ## 🌐 API Endpoints
 ### Areas
 
-- GET /api/areas - List all climbing areas
-- GET /api/areas/{id}/full - Get detailed area information
-- POST /api/areas - Create new area
+- `GET /api/areas` - List all climbing areas
+- `GET /api/areas/{id}/full` - Get detailed area information
+- `POST /api/areas` - Create new area
 
 ### Parking
 
-- POST /api/parking - Add new parking spot
-- DELETE /api/parking/{id} - Remove parking spot
-- GET /api/parking/area/{areaId} - Get area parking spots
+- `POST /api/parking` - Add new parking spot
+- `DELETE /api/parking/{id}` - Remove parking spot
+- `GET /api/parking/area/{areaId}` - Get area parking spots
 
 ### Problems
 
-- GET /api/problems - List all problems
-- POST /api/problems - Add new problem
-- POST /api/problems/{id}/vote/{type} - Vote on problem (type: like, project, easier, harder, send)
+- `GET /api/problems` - List all problems
+- `POST /api/problems` - Add new problem
+- `POST /api/problems/{id}/vote/{type}` - Vote on problem (type: like, project, easier, harder, send)
+
+### Sectors
+
+- `GET /api/sectors/{sectorId}` - Get sector by ID
+- `GET /api/sectors/{sectorId}/problems` - Get all problems and their comments for a sector
+
+### Comments
+
+- `POST /api/comment` - Create new comment
+- `GET /api/comment/{id}/upvote` - Upvote a comment
+- `GET /api/comment/{id}/downvote` - Downvote a comment
+- `GET /api/comment/{id}/flag` - Flag a comment
 
 
 ## 📘 Database
