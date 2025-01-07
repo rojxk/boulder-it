@@ -83,7 +83,7 @@ cd boulderit
 ```
 2. **Configure database**
 - Create MongoDB database named `boulderit`
-- Run the script ➡️ [here](https://github.com/rojxk/boulder-it/database/init-db.js) to populate the database.
+- Run the script ➡️ [here](https://github.com/rojxk/boulder-it/blob/main/database/init-db.js) to populate the database.
 - Update connection settings in `appliction.properties` file:
 ```
 spring.data.mongodb.uri=mongodb://localhost:27017/boulderit
