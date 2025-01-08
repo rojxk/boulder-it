@@ -1,7 +1,7 @@
 ## Boulder-it!
 This project was developed as part of "Non-Relational Databases" course at university.
 
-BoulderIt is a comprehensive web application for managing climbing areas, sectors, and boulder problems. It provides an interactive interface for climbers to explore areas, manage parking spots, and track climbing problems with detailed grading and community feedback.
+BoulderIt is a web application for managing climbing areas, sectors, and boulder problems. It provides an interactive interface for climbers to explore areas, manage parking spots, and track climbing problems with detailed grading and community feedback.
 
 ## ✨ Features
 - Interactive maps for climbing areas and sectors
